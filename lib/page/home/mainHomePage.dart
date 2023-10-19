@@ -62,11 +62,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         elevation: 0,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.delivery_dining_outlined), label: "เดลิเวอร์ลี่"),
-          BottomNavigationBarItem(icon: Icon(Icons.map_outlined), label: "ค้นหา"),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_rounded), label: "ตระกร้า"),
-          BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "รายการ"),
-          BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined), label: "ฉัน"),
+              icon: Icon(Icons.home_outlined), label: "ร้านค้า"),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: "แชท"),
+          BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "ออเดอร์"),
+          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: "เพิ่มรายการ"),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "โปรไฟล์"),
         ],
       ),
     );
