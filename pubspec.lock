@@ -262,14 +262,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
-  flutter_keychain:
-    dependency: "direct main"
-    description:
-      name: flutter_keychain
-      sha256: f41a276e877453e70afcbf8e77e33203eab6f60a42f8296f9f3994e69fa6214c
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

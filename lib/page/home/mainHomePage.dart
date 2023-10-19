@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:showd_delivery/page/account/accountContent.dart';
+import 'package:showd_delivery/page/cart/cartContent.dart';
 import 'package:showd_delivery/page/home/homeContent.dart';
 import 'package:showd_delivery/page/loading/PageLoadingV1.dart';
+import 'package:showd_delivery/page/search/searchContent.dart';
 
 class HomePage extends StatefulWidget {
   final int? index;
@@ -37,10 +40,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       isLoading = false;
       pageList = [
         const HomeContent(),
-        const HomeContent(),
-        const HomeContent(),
-        const HomeContent(),
-        const HomeContent(),
+        const SearchContent(),
+        const CartContent(),
+        const AccountContent(),
       ];
     });
   }
@@ -61,11 +63,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         showUnselectedLabels: true,
         elevation: 0,
         items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "ค้นหา"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.delivery_dining_outlined), label: "เดลิเวอร์ลี่"),
-          BottomNavigationBarItem(icon: Icon(Icons.map_outlined), label: "ค้นหา"),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline_rounded), label: "ตระกร้า"),
-          BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "รายการ"),
+              icon: Icon(Icons.shopping_cart_checkout_outlined), label: "ตระกร้า"),
+          // BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "รายการ"),
           BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined), label: "ฉัน"),
         ],
       ),

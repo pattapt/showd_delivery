@@ -50,7 +50,7 @@ dependencies:
   get: ^4.6.5
   flutter_otp_text_field: ^1.1.1
   flutter_secure_storage: ^8.0.0
-  flutter_keychain: ^2.2.1
+  # flutter_keychain: ^2.2.1
   cached_network_image: ^3.2.3
   flutter_html_v3: ^3.0.6
   intl: ^0.18.1
