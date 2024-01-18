@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:showd_delivery/page/account/accountContent.dart';
 import 'package:showd_delivery/page/cart/cartContent.dart';
+import 'package:showd_delivery/page/history/History.dart';
 import 'package:showd_delivery/page/home/homeContent.dart';
 import 'package:showd_delivery/page/loading/PageLoadingV1.dart';
 import 'package:showd_delivery/page/search/searchContent.dart';
@@ -40,8 +41,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       isLoading = false;
       pageList = [
         const HomeContent(),
-        const SearchContent(),
+        // const SearchContent(),
         const CartContent(),
+        const TransactionHistory(),
         const AccountContent(),
       ];
     });
@@ -51,6 +53,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isLoading == true ? const PageLoadingV1() : pageList[currentIndexPage],
+      floatingActionButton: currentIndexPage == 0
+          ? FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () async {
+                changePageIndex(1);
+              },
+              tooltip: 'ตระกร้าสินค้า',
+              child: const Icon(
+                Icons.shopping_bag,
+                color: Colors.white,
+              ),
+            )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 12,
         selectedFontSize: 12,
@@ -64,10 +79,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         elevation: 0,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "ค้นหา"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_checkout_outlined), label: "ตระกร้า"),
-          // BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "รายการ"),
+          // BottomNavigationBarItem(icon: Icon(Icons.search), label: "ค้นหา"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_checkout_outlined), label: "ตระกร้า"),
+          BottomNavigationBarItem(icon: Icon(Icons.my_library_books_outlined), label: "รายการ"),
           BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined), label: "ฉัน"),
         ],
       ),

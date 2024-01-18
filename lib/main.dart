@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:showd_delivery/class/auth.dart';
+import 'package:showd_delivery/model/AccountProfile.dart';
 import 'package:showd_delivery/route/RouteController.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -11,21 +15,30 @@ Future<void> main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final onboard = prefs.getBool('onboard') ?? false;
+  final isLogin = prefs.getBool('isLogin') ?? false;
+
+  if (isLogin) {
+    await Auth.grantAccessToken();
+    // AccountProfileModel x = await Auth.getProfile();
+  }
 
   runApp(MyApp(
-    onboard: true,
+    onboard: onboard,
+    isLogin: isLogin,
     navigatorKey: navigatorKey,
   ));
 }
 
 class MyApp extends StatefulWidget {
   final bool onboard;
+  final bool isLogin;
   final dynamic session;
   final GlobalKey<NavigatorState> navigatorKey;
 
   const MyApp({
     Key? key,
     required this.onboard,
+    required this.isLogin,
     required this.navigatorKey,
     this.session,
   }) : super(key: key);
@@ -44,9 +57,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SHOW HEE DELIVERY',
+      title: 'ChoDelivery',
       theme: _buildTheme(Brightness.light),
-      initialRoute: widget.onboard ? '/home' : '/onboard',
+      initialRoute: widget.isLogin ? '/home' : (widget.onboard ? '/login' : '/onboard'),
       onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings),
       navigatorKey: widget.navigatorKey,
     );

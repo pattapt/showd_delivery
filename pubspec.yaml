@@ -57,9 +57,11 @@ dependencies:
   # firebase_core: ^2.14.0
   # firebase_messaging: ^14.6.4
   # firebase_analytics: ^10.4.3
-  flutter_local_notifications: ^9.8.0+1
+  # flutter_local_notifications: ^9.8.0+1
   flutter_timezone: ^1.0.7
   pointycastle: ^3.7.3
+  web_socket_channel: ^2.4.0
+
 
 flutter_launcher_icons:
   ios: true

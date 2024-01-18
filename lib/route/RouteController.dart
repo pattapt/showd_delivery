@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:showd_delivery/page/address/addressEdit.dart';
+import 'package:showd_delivery/page/address/addressPage.dart';
+import 'package:showd_delivery/page/address/districtPageEdit.dart';
+import 'package:showd_delivery/page/authentication/LoginPage.dart';
+import 'package:showd_delivery/page/authentication/RegisterPage.dart';
+import 'package:showd_delivery/page/chat/chatPage.dart';
+import 'package:showd_delivery/page/history/HistoryInfo.dart';
 import 'package:showd_delivery/page/home/mainHomePage.dart';
+import 'package:showd_delivery/page/merchant/allProductPage.dart';
+import 'package:showd_delivery/page/merchant/merchantInfoPage.dart';
+import 'package:showd_delivery/page/merchant/productInfoPage.dart';
+import 'package:showd_delivery/page/onboard/onboarding.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     dynamic args = settings.arguments;
     String path = settings.name!;
-
     switch (path) {
-      // case '/onboard':
-      //   return MaterialPageRoute(builder: (_) => OnBoardingPage(generic: generic));
+      case '/onboard':
+        return MaterialPageRoute(builder: (_) => const OnBoardingPage());
       // case '/ssl-error':
       //   return MaterialPageRoute(builder: (_) => DefaultErrorPage(error: generic.data?.error?.ssl));
       case '/':
@@ -18,58 +28,66 @@ class RouteGenerator {
         return _errorRoute();
       case '/home':
         return MaterialPageRoute(builder: (_) => HomePage(index: args));
-      // case '/login':
-      //   if (args is bool) {
-      //     return MaterialPageRoute(builder: (_) => LoginPage(generic: generic, showCloseBTN: args));
-      //   }
-      //   return MaterialPageRoute(builder: (_) => LoginPage(generic: generic));
+      case '/login':
+        if (args is bool) {
+          return MaterialPageRoute(builder: (_) => const LoginPage());
+        }
+        return MaterialPageRoute(builder: (_) => LoginPage());
       // case '/forgot-password':
       //   return MaterialPageRoute(builder: (_) => ForgotPasswordPage(generic: generic));
       // case '/phone-editor':
       //   return MaterialPageRoute(builder: (_) => PhoneEditPage(generic: generic));
       // case '/otp-submit':
       //   return MaterialPageRoute(builder: (_) => OTPSubmitPage(generic: generic));
-      // case '/register':
-      //   if (args is bool) {
-      //     return MaterialPageRoute(builder: (_) => RegisterPage(generic: generic, showCloseBTN: args));
-      //   }
-      //   return MaterialPageRoute(builder: (_) => RegisterPage(generic: generic));
-      // case '/product':
-      //   if (args is int) {
-      //     return MaterialPageRoute(builder: (_) => ItemCategoryPage(generic: generic, id: args));
-      //   }
-      //   return _errorRoute();
-      // case '/productInfo':
-      //   if (args is CategoryModel) {
-      //     return MaterialPageRoute(builder: (_) => ItemCategoryInfoPage(generic: generic, categoryData: args));
-      //   }
-      //   return _errorRoute();
-      // case '/addToCart':
-      //   if (args is Map<String, dynamic>) {
-      //     return MaterialPageRoute(builder: (_) => AddToCartPage(generic: generic, id: args['id'], categoryModel: args['model']));
-      //   }
-      //   return _errorRoute();
-      // case '/Cart':
-      //   if(args is CartDataModel){
-      //     return MaterialPageRoute(builder: (_) => CartPage(generic: generic, data: args));
-      //   }
-      //   return _errorRoute();
-      // case '/CartPaymentSelect':
-      //   if(args is Map<String, dynamic>){
-      //     return MaterialPageRoute(builder: (_) => CartPaymentSelectPage(generic: generic, cartData: args['data'], selectedMethodCode: args['methodCode']));
-      //   }
-      //   return _errorRoute();
-      // case '/topup':
-      //   return MaterialPageRoute(builder: (_) => TopupPageContent(generic: generic));
-      // case '/TopupPaymentSelect':
-      //   if(args is Map<String, dynamic>){
-      //     return MaterialPageRoute(builder: (_) => TopupPaymentSelectPage(generic: generic, data: args['data'], selectedMethodCode: args['methodCode']));
-      //   }
-      //   return _errorRoute();
-      // case '/PurchaseInfoPage':
-      //   if(args is Map<String, dynamic>){
-      //     return MaterialPageRoute(builder: (_) => PurchaseInfoPage(generic: generic, refID: args['token'], redirectTopup: args['openPay']));
-      //   }
+      case '/register':
+        if (args is bool) {
+          return MaterialPageRoute(builder: (_) => const RegisterPage());
+        }
+        return MaterialPageRoute(builder: (_) => const RegisterPage());
+      case '/PurchaseInfoPage':
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => TransactionHistoryDetail(orderToken: args));
+        }
+        return _errorRoute();
+      case '/merchant':
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => MerchantPage(merchantToken: args));
+        }
+        return _errorRoute();
+      case '/AllProductPage':
+        if (args is Map<String, dynamic>) {
+          return MaterialPageRoute(builder: (_) => AllProductPage(data: args));
+        }
+        return _errorRoute();
+      case '/ProductInfoPage':
+        if (args is Map<String, dynamic>) {
+          return MaterialPageRoute(builder: (_) => ProductInfoPage(data: args));
+        }
+        return _errorRoute();
+      case '/chat':
+        if (args is Map<String, dynamic>) {
+          return MaterialPageRoute(builder: (_) => ChatPage(data: args));
+        }
+        return _errorRoute();
+      case '/destination':
+        return MaterialPageRoute(builder: (_) => const addressPage());
+      case '/editAddress':
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => AddressEditPage(addressToken: args, isEdit: true));
+        }
+        return _errorRoute();
+      case '/addAddress':
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => AddressEditPage(addressToken: args, isEdit: false));
+        }
+        return _errorRoute();
+      case '/districtSearch':
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => DistrictListPage(zipcode: args));
+        }
+        return _errorRoute();
+      case '/Logout':
+        return MaterialPageRoute(builder: (_) => LoginPage());
       //   if(args is String){
       //     return MaterialPageRoute(builder: (_) => PurchaseInfoPage(generic: generic, refID: args));
       //   }
